@@ -12,16 +12,17 @@ class ProductController extends Controller
     {
         return view('about');
     }
+
     function showContactUsPage()
     {
         return view('contact');
     }
+
     function index()
     {
-        $products = Product::all();
+        $products = Product::paginate(4);
         return view('products.index', ['products' => $products]);
     }
-
 
     function show($id)
     {
@@ -33,8 +34,6 @@ class ProductController extends Controller
         );
     }
 
-
-
     function destroy($id)
     {
         $product = Product::findOrFail($id);
@@ -44,7 +43,6 @@ class ProductController extends Controller
         return to_route('products.index');
     }
 
-
     function create()
     {
         return view('products.create');
@@ -53,6 +51,28 @@ class ProductController extends Controller
     function store()
     {
         $product = new Product;
+
+        $product->name = request()->input('name');
+        $product->description = request()->input('description');
+        $product->image = request()->input('image');
+        $product->price = request()->input('price');
+        $product->save();
+
+        return to_route('products.index');
+    }
+
+    function edit($id)
+    {
+        $product = Product::findOrFail($id);
+        return view(
+            'products.edit',
+            ['product' => $product]
+        );
+    }
+
+    function update($id)
+    {
+        $product = Product::find($id);
 
         $product->name = request()->input('name');
         $product->description = request()->input('description');
