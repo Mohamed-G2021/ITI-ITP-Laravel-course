@@ -33,6 +33,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        <li> <a class="nav-link" href="{{route('products.index')}}">Products</a>
                         <li> <a class="nav-link" href="/about-us">About us</a>
                         </li>
                         <li> <a class="nav-link" href="/contact-us">Contact us</a></li>

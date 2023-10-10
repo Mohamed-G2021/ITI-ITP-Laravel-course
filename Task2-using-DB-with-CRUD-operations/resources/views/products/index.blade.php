@@ -14,7 +14,7 @@
                                 <div class="card-body">
                                         <h5 class="card-title">{{$product->name}}</h5>
                                         <a href="{{route('products.show',$product->id)}}" class="btn btn-primary">details</a>
-                                        <a href="{{route('products.destroy',$product->id)}}" class="btn btn-danger">delete</a>
+                                        <a href="{{route('products.destroy',$product->id)}}" onclick="return confirm('Are you sure you want to delete this product?')" class="btn btn-danger">delete</a>
                                 </div>
                         </div>
                 </div>
