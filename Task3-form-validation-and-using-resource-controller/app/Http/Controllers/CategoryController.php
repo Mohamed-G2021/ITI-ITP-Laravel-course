@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\storeCategoryRequest;
+use App\Http\Requests\updateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -27,16 +29,9 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(storeCategoryRequest $request)
     {
-        $request->validate(
-            ["name" => "required|unique:categories|min:4"],
-            [
-                "name.required" => "category name is required",
-                "name.min" => "category name must be at least 4 characters",
-                "name.unique" => "this category is already stored"
-            ]
-        );
+
         Category::create($request->all());
 
         return to_route('categories.index');
@@ -61,17 +56,10 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(updateCategoryRequest $request, Category $category)
     {
-        $request->validate(
-            ["name" => "required|unique:categories|min:4",],
-            [
-                "name.required" => "category name is required",
-                "name.min" => "category name must be at least 4 characters",
-                "name.unique" => "this category is already stored"
-            ]
-        );
-        $category->update($request->all());
+        if ($category->name != $request->input('name'))
+            $category->update($request->all());
 
         return to_route("categories.show", $category->id);
     }
