@@ -11,7 +11,6 @@
 
                         <div class="mb-3">
                                 <label class="form-label">Name</label>
-                                <!-- <input type="text" name="name" value="{{old('name')}}" class="form-control"> -->
                                 <input type="text" name="name" value="{{old('name') ?? $category->name}}" class="form-control">
                                 @error('name')
                                 <div class=" text-danger fw-bold">{{ $message }}</div>
@@ -19,7 +18,6 @@
                         </div>
                         <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                                <!-- <input class="form-control" name="description" value="{{old('description')}}" id="exampleFormControlTextarea1" rows="3"></input> -->
                                 <input class="form-control" name="description" value="{{$category->description}}" id="exampleFormControlTextarea1" rows="3"></input>
                                 @error('description')
                                 <div class=" text-danger fw-bold">{{ $message }}</div>

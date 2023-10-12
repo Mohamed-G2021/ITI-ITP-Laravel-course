@@ -5,4 +5,4 @@
         <h1>Contact us</h1>
 </div>
 
-@endsection('content')
+@endsection
