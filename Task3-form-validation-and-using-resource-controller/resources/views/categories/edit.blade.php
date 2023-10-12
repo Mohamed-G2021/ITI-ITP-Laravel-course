@@ -23,6 +23,10 @@
                                 <div class=" text-danger fw-bold">{{ $message }}</div>
                                 @enderror
                         </div>
+                        <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Image</label>
+                                <input type="file" class="form-control" name="image" value="{{old('image')}}" id="exampleFormControlTextarea1" rows="3"></input>
+                        </div>
 
                         <button type="submit" class="btn btn-primary">update</button>
         </form>

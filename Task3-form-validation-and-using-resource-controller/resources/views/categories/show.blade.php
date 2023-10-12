@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-@dump($category->image);
 <div class="container">
         <h1>{{$category->name}} category details</h1>
 
@@ -36,7 +35,6 @@
                 </li>
                 @endforeach
         </ul>
-
         <br>
         <a href="{{route('categories.index')}}" class="btn btn-primary">back to all categories</a>
 
