@@ -54,13 +54,11 @@ class ProductController extends Controller
         request()->validate(
             [
                 "name" => "required",
-                "description" => "required",
                 "image" => "required",
                 "price" => "required|numeric",
             ],
             [
                 "name" => "product name is required",
-                "description" => "product description is required",
                 "image" => "product image is required",
                 "price.required" => "product price is required",
                 "price.numeric" => "only numbers are allowed",

@@ -24,7 +24,7 @@
                                 <input type="text" name="price" value="{{$product->price}}" class="form-control">
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
         </form>
 
 </div>

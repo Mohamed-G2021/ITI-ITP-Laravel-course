@@ -4,6 +4,8 @@
 
 
 <div class="container">
+        <h1>Products</h1>
+        <br>
         <a href="{{route('products.create')}}" class="btn btn-primary">Add new product</a>
         <br><br>
         <div class="row row-cols-1 row-cols-md-4 g-4">
