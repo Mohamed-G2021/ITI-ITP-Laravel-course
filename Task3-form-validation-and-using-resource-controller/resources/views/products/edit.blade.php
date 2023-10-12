@@ -23,6 +23,18 @@
                                 <label class="form-label">Price</label>
                                 <input type="text" name="price" value="{{$product->price}}" class="form-control">
                         </div>
+                        <div class="mb-3">
+                                <label for="form-labe">Category</label>
+                                <select class="form-select" name="category_id" aria-label="Default select example">
+                                        <option selected value="{{$product->category->id?? '' }}">{{$product->category->name?? "" }}</option>
+                                        @foreach($categories as $category)
+                                        @if($product->category_id == $category->id)
+                                        @else
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endif
+                                        @endforeach
+                                </select>
+                        </div>
 
                         <button type="submit" class="btn btn-primary">Update</button>
         </form>

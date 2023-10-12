@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-        <h1>{{$category->name}} details</h1>
+        <h1>{{$category->name}} category details</h1>
 
         <div class="card" style="width: 18rem; ">
                 <div class="card-body">
@@ -22,6 +22,20 @@
 
                 </div>
         </div>
+        <br>
+
+        @if(count($category->product)>0)
+        <h2>Products in {{$category->name}} category</h2>
+        @endif
+
+        <ul class="list-group">
+                @foreach($category->product as $product)
+                <li class="list-group-item">
+                        <a href="{{route('products.show' ,$product->id)}}">{{$product->name}}</a>
+                </li>
+                @endforeach
+        </ul>
+
         <br>
         <a href="{{route('categories.index')}}" class="btn btn-primary">back to all categories</a>
 

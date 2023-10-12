@@ -36,7 +36,15 @@
                                 <div class=" text-danger fw-bold">{{ $message }}</div>
                                 @enderror
                         </div>
-
+                        <div class="mb-3">
+                                <label for="form-labe">Category</label>
+                                <select class="form-select" name="category_id" aria-label="Default select example">
+                                        <option selected value="">Open this select menu</option>
+                                        @foreach($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach
+                                </select>
+                        </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 </div>
