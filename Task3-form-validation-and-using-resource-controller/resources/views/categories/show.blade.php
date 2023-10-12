@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-
+@dump($category->image);
 <div class="container">
         <h1>{{$category->name}} category details</h1>
 
         <div class="card" style="width: 18rem; ">
                 <div class="card-body">
+                        <img src="{{ asset("storage/$category->image")}}" class="card-img-top" height="200" style="object-fit: contain;">
                         <h5 class="card-title">Name: {{$category->name}}</h5>
                         <h5 class="card-title">Description: {{$category->description}}</h5>
                         <h5 class="card-title">Created at: {{$category->created_at}}</h5>
