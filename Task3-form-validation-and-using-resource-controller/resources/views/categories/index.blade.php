@@ -24,7 +24,7 @@
                         <tr>
                                 <td>{{$category->id}}</td>
                                 <td>{{$category->name}}</td>
-                                <td> <img src="{{ asset("storage/$category->image")}}" class="card-img-top" height="200" style="object-fit: contain;"> </td>
+                                <td> <img src="{{ asset("images/$category->image")}}" class="card-img-top" height="200" style="object-fit: contain;"> </td>
                                 <td><a href="{{route('categories.show',$category->id)}}" class="btn btn-primary">show</a></td>
                                 <td><a href="{{route('categories.edit',$category->id)}}" class="btn btn-warning">edit</a></td>
                                 <form action="{{route('categories.destroy',$category->id)}}" method="post">

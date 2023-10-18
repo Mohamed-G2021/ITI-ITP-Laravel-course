@@ -6,6 +6,7 @@ use App\Http\Requests\storeCategoryRequest;
 use App\Http\Requests\updateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -34,7 +35,7 @@ class CategoryController extends Controller
         // dd($request->files->get('image'));
         // Category::create($request->all());
 
-        $image_path = $request->file('image')->store('images', 'public');
+        $image_path = $request->file('image')->store('category_images', 'uploads');
         Category::create([
             "name" => $request->input('name'),
             "description" => $request->input('description'),
@@ -76,7 +77,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-
+        Storage::disk('uploads')->delete($category->image);
         return to_route("categories.index");
     }
 }
