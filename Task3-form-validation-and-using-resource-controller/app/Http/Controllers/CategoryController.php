@@ -32,15 +32,12 @@ class CategoryController extends Controller
      */
     public function store(storeCategoryRequest $request)
     {
-        // dd($request->files->get('image'));
-        // Category::create($request->all());
-
-        $image_path = $request->file('image')->store('category_images', 'uploads');
-        Category::create([
-            "name" => $request->input('name'),
-            "description" => $request->input('description'),
-            "image" => $image_path,
-        ]);
+        $request_data = $request->all();
+        if ($request->file('image')) {
+            $image_path = $request->file('image')->store('category_images', 'uploads');
+            $request_data['image'] = $image_path;
+        }
+        Category::create($request_data);
         return to_route('categories.index');
     }
 
@@ -65,8 +62,14 @@ class CategoryController extends Controller
      */
     public function update(updateCategoryRequest $request, Category $category)
     {
-        if ($category->name != $request->input('name'))
-            $category->update($request->all());
+        $request_data = $request->all();
+        if ($request->file('image')) {
+            $image_path = $request->file('image')->store('category_images', 'uploads');
+            $request_data['image'] = $image_path;
+        }
+
+        // if ($category->name != $request->input('name'))
+        $category->update($request_data);
 
         return to_route("categories.show", $category->id);
     }

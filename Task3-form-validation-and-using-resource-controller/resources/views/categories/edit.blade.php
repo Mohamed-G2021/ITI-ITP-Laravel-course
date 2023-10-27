@@ -4,7 +4,7 @@
 <div class="container">
         <h1> edit {{$category->name}}</h1>
 
-        <form method="post" action="{{route('categories.update', $category->id)}}">
+        <form method="post" action="{{route('categories.update', $category->id)}}" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="mb-3">
