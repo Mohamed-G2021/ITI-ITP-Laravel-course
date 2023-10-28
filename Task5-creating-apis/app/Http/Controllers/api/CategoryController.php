@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return $categories;
+        return CategoryResource::collection($categories);
     }
 
     /**
@@ -32,7 +33,7 @@ class CategoryController extends Controller
         }
 
         $category = Category::create($request->all());
-        return response($category, 201);
+        return (new CategoryResource($category))->response()->setStatusCode(201);
     }
 
     /**
@@ -40,7 +41,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return $category;
+        return new CategoryResource($category);
     }
 
     /**
@@ -58,7 +59,7 @@ class CategoryController extends Controller
         }
 
         $category->update($request->all());
-        return response($category, 200);
+        return (new CategoryResource($category))->response()->setStatusCode(200);
     }
 
     /**
