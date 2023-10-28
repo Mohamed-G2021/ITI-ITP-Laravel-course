@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 
 class ProductController extends Controller
 {
@@ -16,7 +15,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return $products;
+        return ProductResource::collection($products);
     }
 
     /**
@@ -25,7 +24,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = Product::create($request->all());
-        return response($product, 201);
+        return (new ProductResource($product))->response()->setStatusCode(201);
     }
 
     /**
@@ -33,7 +32,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return $product;
+        return new ProductResource($product);
     }
 
     /**
@@ -42,7 +41,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $product->update($request->all());
-        return response($product, 200);
+        return (new ProductResource($product))->response()->setStatusCode(200);
     }
 
     /**
