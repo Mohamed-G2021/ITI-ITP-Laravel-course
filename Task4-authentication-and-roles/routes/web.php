@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', [ProductController::class, 'index']);
+Route::get('/', function () {
+        return view('welcome');
+});
 Route::get('/about-us', [ProductController::class, 'showAboutUsPage']);
 Route::get('/contact-us', [ProductController::class, 'showContactUsPage']);
 Route::get('products', [ProductController::class, 'index'])->name('products.index');
@@ -28,6 +30,8 @@ Route::get('products/{id}/delete', [ProductController::class, 'destroy'])->name(
 Route::get('products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
 Route::post('products', [ProductController::class, 'store'])->name('products.store');
 Route::put('products/{id}/update', [ProductController::class, 'update'])->name('products.update');
-
-
 Route::resource('categories', CategoryController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
