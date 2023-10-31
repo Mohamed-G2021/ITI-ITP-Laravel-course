@@ -27,12 +27,16 @@
                                 <td> <img src="{{ asset("images/$category->image")}}" class="card-img-top" height="200" style="object-fit: contain;"> </td>
                                 <td><a href="{{route('categories.show',$category->id)}}" class="btn btn-primary">show</a></td>
                                 <td><a href="{{route('categories.edit',$category->id)}}" class="btn btn-warning">edit</a></td>
+                                @auth
                                 <form action="{{route('categories.destroy',$category->id)}}" method="post">
                                         @csrf
                                         @method('delete')
                                         <td> <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this category?')" class="btn btn-danger"></td>
                                 </form>
-
+                                @endauth
+                                @guest
+                                <td> please login to use this functionality </td>
+                                @endguest
                         </tr>
                         @endforeach
 
