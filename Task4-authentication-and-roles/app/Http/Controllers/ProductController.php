@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -50,10 +51,10 @@ class ProductController extends Controller
         return view('products.create', ["categories" => $categories]);
     }
 
-    function store()
+    function store(Request $request)
     {
         ## validating form input
-        request()->validate(
+        $request->validate(
             [
                 "name" => "required",
                 "image" => "required",
@@ -67,15 +68,10 @@ class ProductController extends Controller
             ]
         );
 
-        $product = new Product;
+        $request_data = $request->all();
+        $request_data['creator_id'] = Auth::id();
 
-        $product->name = request()->input('name');
-        $product->description = request()->input('description');
-        $product->image = request()->input('image');
-        $product->price = request()->input('price');
-        $product->category_id = request()->input('category_id');
-        $product->save();
-
+        Product::create($request_data);
         return to_route('products.index');
     }
 

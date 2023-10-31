@@ -19,7 +19,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/', [ProductController::class, 'index']);
+Route::get('/', function () {
+        return view('welcome');
+});
 Route::get('/about-us', [ProductController::class, 'showAboutUsPage']);
 Route::get('/contact-us', [ProductController::class, 'showContactUsPage']);
 Route::get('products', [ProductController::class, 'index'])->name('products.index');
