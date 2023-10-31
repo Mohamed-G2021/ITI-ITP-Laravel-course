@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Auth;
 class ProductController extends Controller
 {
 
+    function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+        // $this->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
+    }
+
     function showAboutUsPage()
     {
         return view('about');

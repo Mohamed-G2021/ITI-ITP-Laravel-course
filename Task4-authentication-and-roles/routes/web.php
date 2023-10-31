@@ -31,6 +31,4 @@ Route::get('products/{id}/delete', [ProductController::class, 'destroy'])->name(
 Route::get('products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
 Route::post('products', [ProductController::class, 'store'])->name('products.store');
 Route::put('products/{id}/update', [ProductController::class, 'update'])->name('products.update');
-
-
 Route::resource('categories', CategoryController::class);
