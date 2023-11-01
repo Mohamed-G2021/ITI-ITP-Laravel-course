@@ -1,1 +1,0 @@
-<h1>About us</h1><?php /**PATH /mnt/B082EAC082EA89E4/ITI ICC/Laravel/lab1/resources/views/about.blade.php ENDPATH**/ ?>

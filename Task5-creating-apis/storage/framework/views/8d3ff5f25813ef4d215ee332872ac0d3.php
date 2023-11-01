@@ -1,2 +1,0 @@
-<h1>Contact us</h1>
-<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /mnt/B082EAC082EA89E4/ITI ICC/Laravel/lab1/resources/views/contact.blade.php ENDPATH**/ ?>
