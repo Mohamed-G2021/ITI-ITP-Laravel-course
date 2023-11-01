@@ -13,6 +13,7 @@ class CategoryController extends Controller
     function __construct()
     {
         $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('valid_name')->only('store');
     }
     /**
      * Display a listing of the resource.
