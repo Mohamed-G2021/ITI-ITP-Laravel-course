@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
@@ -44,6 +45,10 @@ class ProductController extends Controller
 
     function destroy($id)
     {
+        if (!Gate::allows('is-admin')) {
+            abort(403);
+        }
+
         $product = Product::findOrFail($id);
 
         $product->delete();
